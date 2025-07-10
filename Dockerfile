@@ -1,15 +1,15 @@
 FROM n8nio/n8n
 
-# Switch to root to install packages
+# Switch to root to install dependencies
 USER root
 
-# Install Python and Node dependencies (Alpine-based)
+# Install Python and Node dependencies
 RUN apk update && \
     apk add --no-cache python3 py3-pip && \
-    pip3 install --no-cache-dir -r /data/requirements.txt && \
+    pip3 install --break-system-packages --no-cache-dir -r /data/requirements.txt && \
     cd /data && npm install
 
-# Copy requirements and package.json
+# Copy your files
 COPY requirements.txt /data/requirements.txt
 COPY package.json /data/package.json
 
@@ -22,5 +22,5 @@ ENV N8N_HOST=0.0.0.0 \
     N8N_BASIC_AUTH_USER=admin \
     N8N_BASIC_AUTH_PASSWORD=forsys@123
 
-# Switch back to default non-root user
+# Revert back to safe user
 USER node
