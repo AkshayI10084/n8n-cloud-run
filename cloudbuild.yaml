@@ -6,8 +6,8 @@ steps:
     args:
       - build
       - '-t'
-      - 'gcr.io/presales-464509/github.com/akshayi10084/n8n-cloud-run:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/presales-464509/n8n-repo/n8n:$COMMIT_SHA'
       - '.'
 
 images:
-  - 'gcr.io/presales-464509/github.com/akshayi10084/n8n-cloud-run:$COMMIT_SHA'
+  - 'us-central1-docker.pkg.dev/presales-464509/n8n-repo/n8n:$COMMIT_SHA'
